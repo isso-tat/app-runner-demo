@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "assume_role_document" {
 }
 
 resource "aws_iam_role" "ecr_access_role" {
-  name               = "AppRunnerAccessRoleToECR"
+  name               = "AppRunnerAccessRoleToECR_${var.service_name}"
   assume_role_policy = data.aws_iam_policy_document.assume_role_document.json
 }
 
@@ -93,7 +93,7 @@ data "aws_iam_policy_document" "apprunner_instance_iam_assume_document" {
 }
 
 resource "aws_iam_policy" "apprunner_instance_vpc_connect_policy" {
-  name        = "AppRunnerVPCConnectPolicy"
+  name        = "AppRunnerVPCConnectPolicy_${var.service_name}"
   description = "VPC Connect IAM policy for AppRunner instance."
   policy      = <<EOF
 {
@@ -114,7 +114,7 @@ EOF
 }
 
 resource "aws_iam_role" "apprunner_instance_iam" {
-  name               = "AppRunnerInstanceRole"
+  name               = "AppRunnerInstanceRole_${var.service_name}"
   assume_role_policy = data.aws_iam_policy_document.apprunner_instance_iam_assume_document.json
 }
 

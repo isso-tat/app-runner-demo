@@ -32,7 +32,7 @@ EOF
 
 resource "null_resource" "default" {
   provisioner "local-exec" {
-    command = "$(aws ecr get-login --region us-east-1)"
+    command = "$(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${aws_ecr_repository.default.repository_url})"
   }
 
   provisioner "local-exec" {
@@ -44,7 +44,7 @@ resource "null_resource" "default" {
   }
 
   provisioner "local-exec" {
-    command = "docker push ${aws_ecr_repository.default.repository_url}/app-runner-demo:latest"
+    command = "docker push ${aws_ecr_repository.default.repository_url}:latest"
   }
 }
 
