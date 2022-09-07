@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  nginx:
+    build: ./nginx
+    tty: true
+    ports:
+      - 80:80
+  php_apache:
+    build: ./php_apache
+    volumes:
+      - ./php_apache:/var/www/html
+    working_dir: /var/www/html
+    tty: true
+    ports:
+      - 81:80
