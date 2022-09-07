@@ -66,4 +66,8 @@ module "apprunner_service" {
 
   subnet_ids         = [aws_subnet.server_subnet.id, aws_subnet.server_subnet2.id, aws_subnet.server_subnet3.id]
   security_group_ids = [aws_security_group.server_sg.id]
+
+  depends_on = [
+    null_resource.default
+  ]
 }
