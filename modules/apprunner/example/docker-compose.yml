@@ -14,3 +14,19 @@ services:
     tty: true
     ports:
       - 81:80
+  laravel:
+    build: ./laravel
+    volumes:
+      - ./laravel:/var/www/html
+    working_dir: /var/www/html
+    tty: true
+    ports:
+      - 82:80
+  lumen:
+    build: ./lumen
+    volumes:
+      - ./lumen:/var/www/html
+    working_dir: /var/www/html
+    tty: true
+    ports:
+      - 83:80
