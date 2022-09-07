@@ -12,6 +12,7 @@ resource "aws_apprunner_auto_scaling_configuration_version" "scaling_config" {
 
 resource "aws_apprunner_service" "default_service" {
   service_name = var.service_name
+  auto_scaling_configuration_arn = aws_apprunner_auto_scaling_configuration_version.scaling_config.arn
 
   instance_configuration {
     cpu               = var.apprunner_cpu

@@ -18,3 +18,14 @@ env AWS_PROFILE=your_profile TF_VAR_image_dir=php_apache terraform apply
 ```
 curl -w "@curl-format.txt" -o /dev/null -s "https://********.us-east-1.awsapprunner.com"
 ```
+
+# Load test
+
+1. Modify urls in siege/URLS.txt.
+
+2. Run cmd.
+
+```
+cd siege
+sh ./siege.sh
+```

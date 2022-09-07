@@ -58,7 +58,7 @@ resource "null_resource" "default" {
 module "apprunner_service" {
   source = "../"
 
-  max_concurrency = 8
+  max_concurrency = 3
   max_size        = 25
   min_size        = 10
 
