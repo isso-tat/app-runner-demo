@@ -2,12 +2,20 @@ version: "3.9"
 
 services:
   nginx:
-    build: ./nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+      target: local
     tty: true
+    volumes:
+      - ./nginx:/usr/share/nginx/html
     ports:
       - 80:80
   php_apache:
-    build: ./php_apache
+    build:
+      context: ./php_apache
+      dockerfile: Dockerfile
+      target: local
     volumes:
       - ./php_apache:/var/www/html
     working_dir: /var/www/html
@@ -15,7 +23,10 @@ services:
     ports:
       - 81:80
   laravel:
-    build: ./laravel
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile
+      target: local
     volumes:
       - ./laravel:/var/www/html
     working_dir: /var/www/html
@@ -23,7 +34,10 @@ services:
     ports:
       - 82:80
   lumen:
-    build: ./lumen
+    build:
+      context: ./lumen
+      dockerfile: Dockerfile
+      target: local
     volumes:
       - ./lumen:/var/www/html
     working_dir: /var/www/html
