@@ -36,7 +36,7 @@ resource "null_resource" "default" {
   }
 
   provisioner "local-exec" {
-    command = "docker build -t app-runner-demo ./${var.image_dir}"
+    command = "docker build -t app-runner-demo ./${var.image_dir} --target remote"
   }
 
   provisioner "local-exec" {

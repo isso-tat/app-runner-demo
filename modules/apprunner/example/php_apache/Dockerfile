@@ -32,8 +32,6 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html
 
-RUN composer install --no-dev --optimize-autoloader
-
 EXPOSE 80
 
 # Local docker-compose environment settings.
