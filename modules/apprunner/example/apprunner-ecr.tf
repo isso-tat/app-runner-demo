@@ -36,7 +36,7 @@ resource "null_resource" "default" {
   }
 
   provisioner "local-exec" {
-    command = "docker build -t app-runner-demo ./nginx"
+    command = "docker build -t app-runner-demo ./${var.image_dir}"
   }
 
   provisioner "local-exec" {
@@ -46,6 +46,10 @@ resource "null_resource" "default" {
   provisioner "local-exec" {
     command = "docker push ${aws_ecr_repository.default.repository_url}:latest"
   }
+
+  triggers = {
+    image_dir = var.image_dir
+  }
 }
 
 /*
@@ -54,9 +58,9 @@ resource "null_resource" "default" {
 module "apprunner_service" {
   source = "../"
 
-  max_concurrency = 30
-  max_size        = 3
-  min_size        = 1
+  max_concurrency = 8
+  max_size        = 25
+  min_size        = 10
 
   ecr_repository_url = aws_ecr_repository.default.repository_url
   apprunner_cpu      = "1024"
